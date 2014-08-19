@@ -36,7 +36,7 @@ int main()
 		throw ec;
 	}
 	// Setup any retry_data settings here
-	con->m_retry = true;		// Indicates that we do want to attempt to connect
+	con->m_retry = true;		// Indicates that we do want to attempt to retry connecting (if first attempt fails)
 	con->m_retry_delay = 300;	// Will wait 300ms between attempts
 	con->m_max_attempts = 10;	// Will stop attempting to retry after 10 attempts
 	

@@ -82,7 +82,7 @@ int main()
 		throw ec;
 	}
 	// Setup any retry_data settings here
-	con->m_retry = true;		// Indicates that we do want to attempt to connect
+	con->m_retry = true;		// Indicates that we do want to attempt to retry connecting (if first attempt fails)
 	con->m_retry_delay = 500;	// Will wait 500ms between delays
 	con->m_max_attempts = 0;	// Never stop attempting to connect
     
@@ -101,10 +101,6 @@ int main()
 		test_server_endpoint.start(9002);
 		std::cout << "Test server is now started, client should connect shortly..." << std::endl;
 		std::this_thread::sleep_for(std::chrono::seconds(2)); // We give a bit of time to connect, because our retry delay was set to 500ms, we give it 2 seconds to be sure that the connection established
-		
-		//send_message(&test_client, "close");
-		
-		//std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 	
 	// Sleep for a few seconds to allow our client's new max_retry = 3 to exhaust and give up

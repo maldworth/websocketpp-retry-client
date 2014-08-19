@@ -9,3 +9,7 @@ target_link_libraries( "example2" ${WEBSOCKETPP_PLATFORM_LIBS} ${Boost_LIBRARIES
 # Example 3
 add_executable( "example3" "example3.cpp" "test_server.cpp" )
 target_link_libraries( "example3" ${WEBSOCKETPP_PLATFORM_LIBS} ${Boost_LIBRARIES})
+
+# Example 4
+add_executable( "example4" "example4.cpp" )
+target_link_libraries( "example4" ${WEBSOCKETPP_PLATFORM_LIBS} ${Boost_LIBRARIES})
