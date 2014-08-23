@@ -15,18 +15,12 @@ void on_open(client* c, websocketpp::connection_hdl hdl) {
     test_con_hdl = hdl;
 }
 
-void term_handler(client* c, client::connection_ptr ptr)
-{
-	std::cout << "terminated..." << std::endl;
-}
-
 void configure_con(client* c, websocketpp::connection_hdl hdl) {
 	// Do all our necessary configurations before attempting to connect
 	client::connection_ptr con = c->get_con_from_hdl(hdl);
 	std::cout << "Connection Attempt: " << con->m_attempt_count << std::endl;
 	
 	con->set_open_handler(bind(&on_open,c,::_1));
-	con->set_termination_handler(bind(&term_handler,c,::_1));
 }
 
 int main(int argc, char* argv[])
@@ -36,14 +30,14 @@ int main(int argc, char* argv[])
 	if (argc == 2) {
 	    uri = argv[1];
 	} else {
-		std::cout << "No Uri provided in argument, defaulting to 'ws://echo.websocket.org'" << std::endl;
+		std::cout << "Please only provide one argument (a websocket URI), defaulting to 'ws://echo.websocket.org'" << std::endl;
 	}
 	
 	std::cout << "Setting up connection to attempt to connect to: " << uri << std::endl;
 	
 	// Remove superfluous logging
-	//test_client.set_access_channels(websocketpp::log::alevel::all);
-    //test_client.set_error_channels(websocketpp::log::elevel::all);
+	test_client.set_access_channels(websocketpp::log::alevel::all);
+    test_client.set_error_channels(websocketpp::log::elevel::all);
         
 	// Normal endpoint setup (just as you would with the regular websocketpp::client)
 	test_client.init_asio();
