@@ -38,7 +38,6 @@ void configure_con(client* c, websocketpp::connection_hdl hdl) {
 	std::cout << "Connection Attempt: " << con->m_attempt_count << std::endl;
 	
 	con->set_open_handler(bind(&on_open,c,::_1));
-	con->set_termination_handler(bind(&term_handler,c,::_1));
 }
 
 int main()
